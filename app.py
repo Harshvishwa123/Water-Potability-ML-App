@@ -31,7 +31,7 @@ st.markdown(
 # -----------------------------------------
 # Load Model
 # -----------------------------------------
-MODEL_PATH = "models_improved/XGBoost_BASE.pkl"   # CHANGE IF REQUIRED
+MODEL_PATH = "models_improved/RandomForest.pkl"   # CHANGE IF REQUIRED
 model = joblib.load(MODEL_PATH)
 
 # Sidebar
