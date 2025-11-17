@@ -2,7 +2,5 @@ streamlit
 pandas
 numpy
 scikit-learn
-catboost==1.2.3
 xgboost==1.7.6
-lightgbm==4.1.0
 joblib
