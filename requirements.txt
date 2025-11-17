@@ -2,7 +2,7 @@ streamlit
 pandas
 numpy
 scikit-learn
-catboost
+catboost==1.2.5
 xgboost
 lightgbm
 joblib
