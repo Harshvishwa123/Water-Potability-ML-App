@@ -1,114 +1,85 @@
-Water Potability Classification with Machine Learning
+# 💧 Water Potability Prediction
 
-A machine learning project to predict water potability based on physicochemical properties, deployed as an interactive web application using Streamlit.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://water-potability-ml-app-nsecm2rxflegwpbbyegha7.streamlit.app/)
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![Machine Learning](https://img.shields.io/badge/ML-CatBoost%20%7C%20RandomForest-green)
 
-🚀 Live Demo
+A machine learning application that predicts whether water is safe for human consumption based on physicochemical properties. This project integrates environmental assessment principles with computational intelligence to aid in water quality monitoring.
 
-You can try the live application here:
-https://water-potability-ml-app-nsecm2rxflegwpbbyegha7.streamlit.app/
+## 🚀 Live Demo
+Check out the deployed web application here:
+**[👉 Launch Water Potability App](https://water-potability-ml-app-nsecm2rxflegwpbbyegha7.streamlit.app/)**
 
-📋 Overview
+---
 
-Access to potable water is a fundamental human right, yet it is increasingly threatened by a complex array of anthropogenic contaminants. This project validates the use of machine learning as a robust, scalable tool for automated potability prediction, offering a crucial decision-support system for water resource management.
+## 📝 Project Overview
+Access to safe drinking water is a fundamental human right, yet it is threatened by contaminants ranging from industrial effluents to emerging threats like PFAS. 
 
-The application takes 9 key water quality parameters as input and uses a pre-trained machine learning model to classify the water as "Potable" (Safe to drink) or "Not Potable" (Unsafe).
+This project utilizes the **Water Potability Dataset** to train predictive models. By analyzing factors such as pH, Hardness, and Chloramines, the system classifies water samples as **Potable (1)** or **Not Potable (0)**. The goal is to provide a scalable, automated decision-support tool for water resource management.
 
-📊 Dataset
+## 📊 Dataset
+The model is trained on the [Kaggle Water Potability Dataset](https://www.kaggle.com/datasets/adityakadiwal/water-potability).
 
-This project uses the Water Potability dataset available on Kaggle.
+**Key Features:**
+* **pH:** Acid-base balance of the water.
+* **Hardness:** Ca and Mg salts capacity (mg/L).
+* **Solids (TDS):** Total dissolved solids (ppm).
+* **Chloramines:** Disinfection dosage (ppm).
+* **Sulfate:** Dissolved sulfates (mg/L).
+* **Conductivity:** Electrical conductivity (μS/cm).
+* **Organic Carbon:** Amount of organic carbon (ppm).
+* **Trihalomethanes:** Disinfection by-product (μg/L).
+* **Turbidity:** Measure of light emitting property.
 
-Source: Kaggle Water Potability Dataset
+## ⚙️ Methodology
+To ensure robust predictions, the following data processing pipeline was implemented:
 
-Features: The dataset includes 9 independent variables:
+1.  **Data Cleaning:** Handling missing values in `pH`, `Sulfate`, and `Trihalomethanes` using **Median Imputation**.
+2.  **Class Imbalance Handling:** Applied **SMOTE** (Synthetic Minority Over-sampling Technique) to balance the ratio of Potable vs. Non-Potable samples.
+3.  **Scaling:** Features standardized using `StandardScaler`.
+4.  **Model Selection:** Evaluated 12 classifiers including Logistic Regression, SVM, and various Ensembles.
 
-ph
+## 🏆 Model Performance
+Ensemble methods demonstrated the superior performance, capturing the non-linear relationships between chemical features.
 
-Hardness
+| Model | Accuracy | ROC-AUC |
+| :--- | :---: | :---: |
+| **CatBoost** | **65.0%** | **0.696** |
+| Random Forest | 66.2% | 0.690 |
+| XGBoost | 63.7% | 0.682 |
+| LightGBM | 63.7% | 0.672 |
+| Logistic Regression | 49.8% | 0.495 |
 
-Solids (Total Dissolved Solids)
+*The deployed application utilizes the **CatBoost** model for its superior class-separation ability (ROC-AUC).*
 
-Chloramines
+## 💻 Installation & Local Usage
 
-Sulfate
+To run this project locally on your machine:
 
-Conductivity
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/your-username/water-potability-ml.git](https://github.com/your-username/water-potability-ml.git)
+    cd water-potability-ml
+    ```
 
-Organic_carbon
+2.  **Install dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Trihalomethanes
+3.  **Run the Streamlit app**
+    ```bash
+    streamlit run app.py
+    ```
 
-Turbidity
+## 👥 Authors
+* **Harsh Vishwakarma** (Roll No. 2022205)
+* **Ayan Kumar Singh** (Roll No. 2022122)
 
-Target: Potability (1 = Potable, 0 = Not Potable)
-
-⚙️ Methodology
-
-The machine learning workflow involved several key stages:
-
-Data Preprocessing:
-
-Imputation: Missing values (in ph, Sulfate, Trihalomethanes) were filled using the median strategy to avoid sensitivity to outliers.
-
-Class Imbalance: The target variable was imbalanced (approx. 61% Not Potable vs. 39% Potable). This was handled by applying the SMOTE (Synthetic Minority Over-sampling Technique) to the training data.
-
-Scaling: All features were standardized using StandardScaler.
-
-Model Training & Evaluation:
-
-Twelve different classification models were trained and evaluated using 5-fold stratified cross-validation.
-
-Ensemble methods (CatBoost, LightGBM, Random Forest) significantly outperformed linear and simple probabilistic models, confirming the non-linear complexity of the problem.
-
-The final model deployed in the Streamlit app is based on the best-performing classifier, CatBoost, which achieved the highest ROC-AUC score (0.696).
-
-🖥️ How to Use the App
-
-Navigate to the live Streamlit app.
-
-Use the sliders in the sidebar to input the values for each of the 9 water quality features.
-
-Click the "Predict Potability" button.
-
-The application will display the prediction ("Potable" or "Not Potable") along with a confidence score.
-
-Local Installation
-
-To run this project on your local machine:
-
-Clone the repository:
-
-git clone [https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git)
-cd YOUR_REPOSITORY_NAME
-
-
-Create a virtual environment:
-
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-
-
-Install the dependencies:
-(You will need to create a requirements.txt file based on your project)
-
-pip install -r requirements.txt
-
-
-A typical requirements.txt might look like this:
-
-streamlit
-pandas
-numpy
-scikit-learn
-catboost
-lightgbm
-imblearn 
-
-
-Run the Streamlit app:
-
-streamlit run app.py
-
-
-📄 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+How to add this to GitHub:
+Go to your GitHub repository.
+Click on Add file > Create new file.
+Name the file README.md.
+Paste the code block above into the editor.
+(Optional) Replace your-username in the "Clone the repository" section with your actual GitHub username.
+Click Commit changes.
